@@ -2,6 +2,10 @@ package edu.praktikum.sprint4.pom;
 
 import org.openqa.selenium.*;
 
+import java.time.Duration;
+
+import static java.time.temporal.ChronoUnit.SECONDS;
+
 public class OrderPage {
     private static final String URL = "https://qa-scooter.praktikum-services.ru/order";
 
@@ -20,7 +24,6 @@ public class OrderPage {
     private final By commentInput = By.xpath(".//input[@class='Input_Input__1iN_Z Input_Responsible__1jDKN' and @placeholder='Комментарий для курьера']");
     private final By orderButton = By.xpath(".//button[@class='Button_Button__ra12g Button_Middle__1CSJM' and text()='Заказать']");
     private final By yesButton = By.xpath(".//button[@class='Button_Button__ra12g Button_Middle__1CSJM' and text()='Да']");
-    // private final By orderText = By.xpath(".//div[text()='Заказ оформлен' and text()='Номер заказа: ' and text()='.  Запишите его: ' and text()='пригодится, чтобы отслеживать статус']");
 
     private final By orderModalHeader = By.xpath(".//div[@class='Order_ModalHeader__3FDaJ']");
     private final By orderText = By.xpath(".//div[@class='Order_Text__2broi']");
@@ -66,7 +69,7 @@ public class OrderPage {
 
     public OrderPage clickYesButton() throws InterruptedException {
         webDriver.findElement(yesButton).click();
-        Thread.sleep(1000);
+        webDriver.manage().timeouts().implicitlyWait(Duration.of(1, SECONDS));
         return this;
 
     }
@@ -94,7 +97,6 @@ public class OrderPage {
         return this;
 
     }
-
 
     public OrderPage inputPhoneInField(String text) {
         webDriver.findElement(phoneInput).sendKeys(text);
@@ -137,12 +139,8 @@ public class OrderPage {
 
         WebElement webElement = webDriver.findElement(element);
         ((JavascriptExecutor) webDriver).executeScript("arguments[0].scrollIntoView(true);", webElement);
-        Thread.sleep(500);
+        webDriver.manage().timeouts().implicitlyWait(Duration.of(1, SECONDS));
 
         return this;
     }
-
-
-
-
 }

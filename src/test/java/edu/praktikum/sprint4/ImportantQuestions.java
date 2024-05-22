@@ -8,11 +8,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-
 @RunWith(Parameterized.class)
 public class ImportantQuestions {
-
-
     private final int index;
     private final String question;
     private final String answer;
@@ -20,13 +17,11 @@ public class ImportantQuestions {
     @Rule
     public BrowserRule browserRule = new BrowserRule();
 
-
     public ImportantQuestions(int index, String question, String answer) {
         this.index = index;
         this.question = question;
         this.answer = answer;
     }
-
 
     @Parameterized.Parameters
     public static Object[][] getCredentials(){
@@ -42,7 +37,6 @@ public class ImportantQuestions {
         };
     }
 
-
     @Test
     public void checkClickQuestion_expectTextIsDisplayed() throws InterruptedException {
 
@@ -52,7 +46,6 @@ public class ImportantQuestions {
                 .click(mainPage.getQuestionLocatorByIndex(index));
         String actualQuestionText = mainPage.getElementText(mainPage.getQuestionLocatorByIndex(index));
         String actualAnswerText = mainPage.getElementText(mainPage.getAnswerLocationByIndex(index));
-
 
         Assert.assertEquals("Текст вопроса неверный", question, actualQuestionText);
         Assert.assertEquals("Текст ответа неверный", answer, actualAnswerText);

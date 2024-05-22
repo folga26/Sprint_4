@@ -1,10 +1,13 @@
 package edu.praktikum.sprint4.pom;
 
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import java.time.Duration;
+
+import static java.time.temporal.ChronoUnit.SECONDS;
 
 
 public class MainPage {
@@ -60,7 +63,7 @@ public class MainPage {
 
         WebElement webElement = webDriver.findElement(element);
         ((JavascriptExecutor) webDriver).executeScript("arguments[0].scrollIntoView(true);", webElement);
-        Thread.sleep(500);
+        webDriver.manage().timeouts().implicitlyWait(Duration.of(1, SECONDS));
 
         return this;
     }
